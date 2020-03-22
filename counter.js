@@ -1,14 +1,23 @@
-$('*').each(function () {
-    var number = $(this).attr('data-ct-number');
-    var dur = $(this).attr('data-ct-duration');
+$(window).scroll(function () {
+    $('*').each(function () {
+        var windowTop = $(window).scrollTop();
+        var offsetTop = $(this).offset().top;
 
-    $(this).animate({
-        countNum: number
-    }, {
-        duration: dur,
-        easing: 'linear',
-        step: function (now) {
-            $(this).text(Math.floor(now));
+        if (windowTop >= offsetTop - 800) {
+            var number = $(this).attr('data-ct-number');
+            var dur = $(this).attr('data-ct-duration');
+            $(this).animate({
+                countNum: number
+            }, {
+                    duration: parseInt(dur),
+                    easing: 'linear',
+                    step: function (now) {
+                        $(this).text(Math.floor(now));
+                    }
+                })
+
         }
+
     })
-})
+});
+
